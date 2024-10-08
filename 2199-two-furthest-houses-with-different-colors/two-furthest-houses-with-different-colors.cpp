@@ -1,26 +1,24 @@
 class Solution {
 public:
-    int maxDistance(vector<int>& nums) {
-        int big = -1;   // To store the maximum distance
-        int j = 0;      // Starting index (compare nums[j] with nums[i])
-        
-        // Iterate through the array to find the maximum distance from the start
-        for (int i = 1; i < nums.size(); i++) {
-            // If the current element is different from the element at index j
-            if (nums[j] != nums[i]) {
-                big = max(big, i);  // Update maximum distance
+    int maxDistance(vector<int>& colors) {
+        if(colors.size()==1){
+            return 0;
+        }
+        int l,r;
+        int s=colors.size();
+        for(int i=s-1;i>=0;i--){
+            if(colors[0]!=colors[i]){
+                l=i;
+                break;
             }
         }
-
-        // Compare the last element with earlier elements
-        j = nums.size() - 1;  // Set j to point to the last element
-        for (int i = nums.size() - 2; i >= 0; i--) {
-            // If the current element is different from the element at index j
-            if (nums[j] != nums[i]) {
-                big = max(big, j - i);  // Update maximum distance
+        for(int i=0;i<s;i++){
+            if(colors[i]!=colors[s-1]){
+                r=s-1-i;
+                break;
             }
         }
-        
-        return big;  // Return the maximum distance
+        int m=max(l,r);
+        return m;
     }
 };
