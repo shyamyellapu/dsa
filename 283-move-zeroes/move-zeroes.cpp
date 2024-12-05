@@ -1,23 +1,24 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int n=nums.size();
-        vector<int> temp;
-        for(int i=0;i<n;i++){
-            if(nums[i]!=0){
-                temp.push_back(nums[i]);
+ int j = 0; // Pointer for the next non-zero position
+
+        // First pass: Move all non-zero elements to the front
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                nums[j] = nums[i];
+                j++;
             }
         }
-        int s=temp.size();
-        for(int i=0;i<s;i++){
-            nums[i]=temp[i];
+
+        // Second pass: Fill the rest of the array with zeros
+        for (int i = j; i < nums.size(); i++) {
+            nums[i] = 0;
         }
-        for(int i=s;i<n;i++){
-            nums[i]=0;
+
+        // Print the result (optional)
+        for (auto it : nums) {
+            cout << it << " ";
         }
-        
-      for(auto it:nums)  {
-          cout<<it;
-      }
     }
 };
