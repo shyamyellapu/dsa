@@ -1,12 +1,20 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int n=nums.size();
-        int total =(n*(n+1))/2;
-        int atotal=0;
-        for(int i=0;i<n;i++){
-        atotal+=nums[i];
+        int xor1 = 0; // XOR of all numbers from 0 to n
+        int xor2 = 0; // XOR of all elements in the array
+
+        // XOR all numbers from 0 to n
+        for (int i = 0; i <= nums.size(); i++) {
+            xor1 ^= i;
         }
-        return total-atotal;
+
+        // XOR all elements in the array
+        for (int num : nums) {
+            xor2 ^= num;
+        }
+
+        // Missing number is the XOR of xor1 and xor2
+        return xor1 ^ xor2;
     }
 };
